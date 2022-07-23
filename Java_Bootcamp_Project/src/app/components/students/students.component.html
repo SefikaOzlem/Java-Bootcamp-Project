@@ -1,8 +1,9 @@
 <h1>Student List</h1>
 
-<ul>
+<ul style="list-style: none;">
     <li *ngFor="let student of students ">
-        <p>{{student.name +" "+student.Surname+" "+student.PhoneNumber+" "+student.Email+" "}}</p>
+        <br>
+        <mat-card>{{student.name +" "+student.Surname+" "+student.PhoneNumber+" "+student.Email+" "}}</mat-card>
 
     </li>
 </ul>

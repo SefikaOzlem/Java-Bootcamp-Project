@@ -9,7 +9,8 @@ import { ActivityComponent } from './components/activity/activity.component';
 import { ListactivitiesComponent } from './components/listactivities/listactivities.component';
 import { StudentsComponent } from './components/students/students.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatCardModule} from '@angular/material/card';
 
 
 @NgModule({
@@ -27,7 +28,10 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

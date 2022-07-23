@@ -2,14 +2,14 @@ import { Moderator } from './Moderator';
 import { Student } from "./Student";
 
 export abstract class Activity {
-    private activityName:string;
-    private activityStartDate:Date;
-    private activityFinishDate:Date;
-    private activityDetail!:string;
-    private students:Array<Student> = [];
-    private moderators:Array<Moderator> = [];
-    private isTheActive!:boolean;
-    private activityStatus:string; // online or yerinde eğitim
+     activityName:string;
+    activityStartDate:Date;
+     activityFinishDate:Date;
+     activityDetail!:string;
+     students:Array<Student> = [];
+     moderators:Array<Moderator> = [];
+     isTheActive!:boolean;
+     activityStatus:string; // online or yerinde eğitim
 
     constructor(activityName:string,activityStartDate:Date,activityFinishDate:Date,activityStatus:string) {   // Activity constructor
         this.activityName=activityName;

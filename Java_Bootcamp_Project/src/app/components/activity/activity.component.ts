@@ -37,6 +37,10 @@ export class ActivityComponent implements OnInit {
         this.activityStatus=value;
     }
 
+    get Activities():Activity[]{
+        return this.activities;
+    }
+
    /* getActivityType():string{
         return "";
     }  // abstract method, return the activity type  */

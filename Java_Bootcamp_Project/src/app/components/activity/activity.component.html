@@ -4,7 +4,7 @@
         <h1>ETKİNLİK OLUŞTUR</h1>
         <label>Etkinlik Adı : </label>
         <input type="text" name="activityName" placeholder="" ngModel/>
-        <br><br> 
+        <br><br>
         <label>Etkinlik Tipi : </label>
         <select #types (change)="onSelected(types.value)" ng-model required="required">
             <option style="display:none" value="">Seçiniz</option>
@@ -12,25 +12,25 @@
             <option value="Hackaton">Hackaton</option>
             <option value="In House Education">In House Education</option>
         </select>
-        <br><br> 
+        <br><br>
         <label>Başlangıç Tarihi : </label>
         <input type="date" name="activityStartDate" placeholder="" ngModel />
-        <br><br> 
+        <br><br>
         <label>Bitiş Tarihi : </label>
         <input type="date" name="activityFinishDate" placeholder="" ngModel />
-        <br><br> 
+        <br><br>
         <label>Etkinlik Statüsü :</label>
         <select #status (change)="onSelectedStatus(status.value)" ng-model required="required">
           <option style="display:none" value="">Seçiniz</option>
           <option value="Online">Online</option>
           <option value="In Office">In office</option>
         </select>
-        <br><br> 
+        <br><br>
         <label>Etkinlik Detayları : </label>
         <textarea name="details" placeholder="" rows="7" ngModel></textarea>
         <br><br>
-        <button (click)="onSaveActivity()" class = "button">Etkinlik Oluştur</button>
-        
+        <button (click)="onSaveActivity()" class="button">Etkinlik Oluştur</button>
+
     </form>
-    
+
 </div>
