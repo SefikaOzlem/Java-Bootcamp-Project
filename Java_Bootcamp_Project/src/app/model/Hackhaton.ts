@@ -1,20 +1,35 @@
 import { Activity } from "./Activity";
+import { Mentor } from "./Mentor";
+import { Sponsor } from "./Sponsor";
 
-class Hackhaton extends Activity{
+export class Hackhaton extends Activity{
     
-    //private mentor: Mentor list;
-    //private sponsor: Sponsor:
     
-    constructor(activityName:string,activityDate:Date,activityType:string) {
-        super(activityName,activityDate,activityType);
-        //teacher
-        //student
+    private mentors: Array<Mentor> = [];
+    private sponsor: Sponsor;
+    
+    constructor(activityName:string,activityStartDate:Date,activityFinishDate:Date,activityStatus:string,sponsor:Sponsor) {
+        super(activityName,activityStartDate,activityFinishDate,activityStatus);
+        this.sponsor=sponsor;
     }
-    //get,set mentor
-   // get,set sponsor
+    get Mentors():Mentor[]{
+        return this.mentors
+    }
+    addMentors(mentor:Mentor)  // add mentor to Hackhaton activity
+    {
+       this.mentors.push(mentor);
+    }
+   
+    get Sponsor():Sponsor{
+        return this.sponsor;
+    }
+
+    set Sponsor(sponsorCompany:Sponsor){
+        this.sponsor=sponsorCompany;
+    }
     
     getActivityType(): string {
         return 'Hackhaton';
     }
-  
+   
 }

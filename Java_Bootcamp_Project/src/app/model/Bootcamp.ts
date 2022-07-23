@@ -1,27 +1,38 @@
 import { Activity } from "./Activity";
 import {Sponsor} from "./Sponsor";
+import { Teacher } from "./Teacher";
 
-class Bootcamp extends Activity{
+export class Bootcamp extends Activity{
+   
+   
+    private teachers: Array<Teacher> = [];
+    private sponsor: Sponsor;
     
-    //private teacher: Teacher list;
-    private sponsor!: Sponsor;
-    
-    constructor(activityName:string,activityDate:Date,activityType:string) {
-        super(activityName,activityDate,activityType);
-        //teacher
-        //student
+    constructor(activityName:string,activityStartDate:Date,activityFinishDate:Date,activityStatus:string,sponsor:Sponsor) {
+        super(activityName,activityStartDate,activityFinishDate,activityStatus);
+        this.sponsor=sponsor;
+
     }
-    //get,set teacher
-   get Sponsor():Sponsor{
-    return this.sponsor;
-   }
-   set Sponsor(sponsorCompany:Sponsor){
-    this.sponsor=sponsorCompany;
-   }
+
+    get Teachers():Teacher[]{
+        return this.teachers;
+    }
+
+   addTeachers(teacher:Teacher)
+    {
+       this.teachers.push(teacher);
+    }
     
-    getActivityType(): string {
+    get Sponsor():Sponsor{
+     return this.sponsor;
+    }
+    set Sponsor(sponsorCompany:Sponsor){
+     this.sponsor=sponsorCompany;
+    }
+    
+     getActivityType(): string {
         return 'Bootcamp';
-    }
+     }
 
-  
+    
 }

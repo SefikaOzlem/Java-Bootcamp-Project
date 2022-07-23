@@ -1,13 +1,14 @@
-import { Activity } from "./Activity";
 import { Person } from "./Person";
 
-class Student extends Person{
+export class Student extends Person{
 
     private studentNumber:string;
+    private univercity: string;
 
-    constructor(name:string,surname:string,phoneNumber:string,email:string,activity:Activity[],studentNumber:string){
-        super(name,surname,phoneNumber,email,activity);
+    constructor(name:string,surname:string,phoneNumber:string,email:string,studentNumber:string,univercity:string){
+        super(name,surname,phoneNumber,email);
         this.studentNumber=studentNumber;
+        this.univercity=univercity;
     }
 
 
@@ -17,6 +18,14 @@ class Student extends Person{
 
     set StudentNumber(studentNumber:string){
         this.studentNumber=studentNumber;
+    }
+
+    get Univercity():string{
+        return this.univercity;
+    }
+
+    set Univercity(univercityName:string){
+        this.univercity=univercityName;
     }
 
 }

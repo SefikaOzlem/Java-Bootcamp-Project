@@ -1,18 +1,55 @@
+import { Student } from './Student';
 import { Activity } from "./Activity";
+import { Moderator } from "./Moderator";
+import { Bootcamp } from './Bootcamp';
+import { Sponsor } from './Sponsor';
+import { Hackhaton } from './Hackhaton';
+import { InHouseEducation } from './InHouseEducation';
+import { Department } from './Department';
 
 export abstract class Person{
     private name: string;
     private surname: string;
     private phoneNumber: string;
     private email: string;  
-    private activities: Activity[];
+    private activity!: Activity;
 
-    constructor(name:string,surname:string,phoneNumber:string,email:string,activity:Activity[]) {
+    /* Person constructor */
+    constructor(name:string,surname:string,phoneNumber:string,email:string) {
         this.name=name;
         this.surname=surname;
         this.phoneNumber=phoneNumber;
         this.email=email;
-        this.activities=activity;
+    }
+
+    /*Create bootcamp */
+    addBootcamp(activityName:string,activityStartDate:Date,activityFinishDate:Date,activityStatus:string,sponsor:Sponsor):Activity{
+        this.activity= new Bootcamp(activityName,activityStartDate,activityFinishDate,activityStatus,sponsor);
+        return this.activity;
+    }
+    /*Create Hackhaton */
+    addHackhaton(activityName:string,activityStartDate:Date,activityFinishDate:Date,activityStatus:string,sponsor:Sponsor):Activity{
+        this.activity= new Hackhaton(activityName,activityStartDate,activityFinishDate,activityStatus,sponsor);
+        return this.activity;
+    }
+    /*Create InHouseEducation */   
+    addInHouseEducation(activityName:string,activityStartDate:Date,activityFinishDate:Date,activityStatus:string,companyName:string,department:Department):Activity{
+        this.activity= new InHouseEducation(activityName,activityStartDate,activityFinishDate,activityStatus,companyName,department);
+
+        return this.activity;
+    }
+
+    /*Find person in Person[] */
+    find(name:string,surname:string,person:Person[])
+    {
+        for(var i=0;i<person.length;i++)
+        {
+          if(person[i].Name==name && person[i].Surname==surname)
+          {
+            console.log(person[i]);
+          }
+        }
+
     }
 
     get Name():string{
