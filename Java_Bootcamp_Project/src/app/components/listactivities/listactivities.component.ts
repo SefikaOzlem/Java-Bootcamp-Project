@@ -5,8 +5,8 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./listactivities.component.css']
 })
 export class ListactivitiesComponent implements OnInit {
+
   
- 
   
   constructor() { }
 
@@ -16,6 +16,5 @@ export class ListactivitiesComponent implements OnInit {
 
    
     
-  }
 
 }
