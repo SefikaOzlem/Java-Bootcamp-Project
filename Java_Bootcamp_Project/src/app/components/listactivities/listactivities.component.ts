@@ -8,12 +8,10 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./listactivities.component.css']
 })
 export class ListactivitiesComponent implements OnInit {
-  
-  
+
   constructor() { }
 
-  
   ngOnInit(): void {
+    throw new Error('Method not implemented.');
   }
-
 }

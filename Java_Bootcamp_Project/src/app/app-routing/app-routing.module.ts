@@ -4,6 +4,7 @@ import { AppComponent } from '../app.component';
 import { ActivityComponent } from '../components/activity/activity.component';
 import { ListactivitiesComponent } from '../components/listactivities/listactivities.component';
 import { RouterModule, Routes } from '@angular/router';
+import { StudentsComponent } from '../components/students/students.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,11 @@ const routes: Routes = [
   {
     path:"app-listactivities", 
     component:ListactivitiesComponent 
+  },
+
+  {
+    path:"app-students", 
+    component:StudentsComponent 
   }
 ];
 
