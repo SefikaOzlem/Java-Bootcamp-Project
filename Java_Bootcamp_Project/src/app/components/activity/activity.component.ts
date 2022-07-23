@@ -1,15 +1,74 @@
+import { InHouseEducation } from 'src/app/model/InHouseEducation';
+import { Hackhaton } from 'src/app/model/Hackhaton';
+import { Sponsor } from 'src/app/model/Sponsor';
+import { Bootcamp } from 'src/app/model/Bootcamp';
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Moderator } from 'src/app/model/Moderator';
 import { Student } from 'src/app/model/Student';
+import { Activity } from 'src/app/model/Activity';
+import { Department } from 'src/app/model/Department';
+import { Teacher } from 'src/app/model/Teacher';
 
 @Component({
   selector: 'app-activity',
-  templateUrl: './activity.component.html',
+  templateUrl: './activity.component.html', 
   styleUrls: ['./activity.component.css']
 })
 export class ActivityComponent implements OnInit {
 
-    activityName!: string;
+    private activityName!:string;
+    private activityType!:string;
+    private activityStatus!:string;
+    private activityDetail!:string;
+    private activityStartDate!:Date;
+    private activityFinishDate!:Date;
+    activities:Array<Activity> = [];
+
+    constructor(private formBuilder: FormBuilder) {}
+    ngOnInit(): void {
+              
+    } 
+    onSelected(value:any){
+        this.activityType=value;
+    }
+    onSelectedStatus(value:any){
+        this.activityStatus=value;
+    }
+
+   /* getActivityType():string{
+        return "";
+    }  // abstract method, return the activity type  */
+
+    OnClickForm(data: { activityName: string; type : string; activityStartDate: Date; activityFinishDate: Date; statu: string; details:string}) {
+       this.activityName=data.activityName;
+       this.activityStartDate=data.activityStartDate;
+       this.activityFinishDate=data.activityFinishDate;
+       this.activityDetail=data.details;
+        alert("Etkinlik adı : " + data.activityName +"\nEtkinlik türü : " +this.activityType + "\nBaşlangıç Tarihi : " 
+        + data.activityStartDate + "\nBitiş Tarihi : "  + data.activityFinishDate + "\n Etkinlik Statusu : " 
+        + this.activityStatus + "\n Etkinlik detayları : " + data.details );
+    }
+    onSaveActivity(){
+        let sponsor = new Sponsor("AKSİgorta "); //New sponsor identified 
+        var teacherOne=new Teacher("Yunus","Doğan","5078982541","yunusd@gmail.com","Android");
+        const department=new Department("Technology",teacherOne);
+        if(this.activityType=="Bootcamp"){
+            const bootcampObject=new Bootcamp(this.activityName,this.activityStartDate,this.activityFinishDate,this.activityStatus,sponsor);//Object defined with bootcamp constructor
+            this.activities.push(bootcampObject);
+        }
+        else if(this.activityType=="Hackaton"){
+            const hackhatonObject=new Hackhaton(this.activityName,this.activityStartDate,this.activityFinishDate,this.activityStatus,sponsor);
+            this.activities.push(hackhatonObject);
+        }
+        else if(this.activityType=="In House Education"){
+            const inHouseEducationObject=new InHouseEducation(this.activityName,this.activityStartDate,this.activityFinishDate,this.activityStatus,"AKBank",department);
+            this.activities.push(inHouseEducationObject);
+        }  
+    }
+
+     /*activityName!: string;
     activityStartDate!: Date;
     activityFinishDate!: Date;
     activityDetail!:string;
@@ -21,7 +80,7 @@ export class ActivityComponent implements OnInit {
     constructor() {   // Activity constructor
     }
 
-    get ActivityName():string{   // return activity name 
+    /*get ActivityName():string{   // return activity name 
     return this.activityName;
     }
     set ActivityName(activityName:string){   // setting to activity name
@@ -100,20 +159,4 @@ export class ActivityComponent implements OnInit {
         }
     }
     */
-    
-
-
-    ngOnInit(): void {
-           
-        
-    }
-    getActivityType():string{
-        return "";
-    }  // abstract method, return the activity type  
-
-    OnClickForm(data: { activityName: string; type : string; activityStartDate: Date; activityFinishDate: Date; statu: string; details:string}) {
-        alert("Etkinlik adı : " + data.activityName +"\nEtkinlik türü : " +data.type + "\nBaşlangıç Tarihi : " 
-        + data.activityStartDate + "\nBitiş Tarihi : "  + data.activityFinishDate + "\n Etkinlik Statusu : " 
-        + data.statu + "\n Etkinlik detayları : " + data.details + "\n Etkinlik Statusu : " + data.statu);
-    }
 }
