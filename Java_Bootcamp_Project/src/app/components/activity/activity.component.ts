@@ -3,7 +3,7 @@ import { Hackhaton } from 'src/app/model/Hackhaton';
 import { Sponsor } from 'src/app/model/Sponsor';
 import { Bootcamp } from 'src/app/model/Bootcamp';
 import { ThisReceiver } from '@angular/compiler';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Moderator } from 'src/app/model/Moderator';
 import { Student } from 'src/app/model/Student';
@@ -18,12 +18,12 @@ import { Teacher } from 'src/app/model/Teacher';
 })
 export class ActivityComponent implements OnInit {
 
-    private activityName!:string;
-    private activityType!:string;
-    private activityStatus!:string;
-    private activityDetail!:string;
-    private activityStartDate!:Date;
-    private activityFinishDate!:Date;
+    activityName!:string;
+    activityType!:string;
+    activityStatus!:string;
+    activityDetail!:string;
+    activityStartDate!:Date;
+    activityFinishDate!:Date;
     activities:Array<Activity> = [];
 
     constructor(private formBuilder: FormBuilder) {}
@@ -67,6 +67,7 @@ export class ActivityComponent implements OnInit {
             this.activities.push(inHouseEducationObject);
         }  
     }
+
 
      /*activityName!: string;
     activityStartDate!: Date;
