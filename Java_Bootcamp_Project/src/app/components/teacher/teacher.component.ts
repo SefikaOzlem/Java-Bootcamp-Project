@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersComponent } from '../users/users.component';
 
 @Component({
   selector: 'app-teacher',
   templateUrl: './teacher.component.html',
   styleUrls: ['./teacher.component.css']
 })
-export class TeacherComponent implements OnInit {
+export class TeacherComponent extends UsersComponent implements OnInit {
 
-    private specialty :string;
+    specialty!: string;
 
     /*Teacher Constructor */
-    constructor(name:string,surname:string,phoneNumber:string,email:string, specialty:string){
-        super(name,surname,phoneNumber,email);
-        this.specialty=specialty;
-     }
+    constructor(){
+      super();
+    }
 
     get Specialty():string{
         return this.specialty;
@@ -22,7 +22,7 @@ export class TeacherComponent implements OnInit {
     set Specialty(specialty:string){
         this.specialty=specialty;
     }
-  ngOnInit(): void {
+  override ngOnInit(): void {
   }
 
 }

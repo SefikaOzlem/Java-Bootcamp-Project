@@ -1,1 +1,31 @@
-<p>activity works!</p>
+<div>
+    
+    <form #frm="ngForm" (ngSubmit)="OnClickForm(frm.value)" class="smart-green">
+        <h1 center>ETKİNLİK OLUŞTUR</h1>
+        Etkinlik Adı : <input type="text" name="activityName" placeholder="" ngModel />
+        <br><br>
+        Etkinlik Tipi : <select name="Type" ngModel>
+            <option value="0">BootCamp</option>
+            <option value="1">Hackaton</option>
+            <option value="2">In House Education</option>
+        </select>
+        <br><br>
+        Başlangıç Tarihi : <input type="date" name="activityStartDate" placeholder="" ngModel />
+        <br><br>
+        Bitiş Tarihi : <input type="date" name="activityFinishDate" placeholder="" ngModel />
+        <br><br>
+        Etkinlik Statusu : <select name="statu" ngModel>
+          <option value="0">Online</option>
+          <option value="1">In office</option>
+        </select>
+        <br><br>
+        Etkinlik Detayları : <textarea name="details" placeholder="" rows="7" ngModel></textarea>
+        <br><br>
+        
+        <button>Etkinlik oluştur</button>
+      </form>
+    
+</div>
+
+
+ 

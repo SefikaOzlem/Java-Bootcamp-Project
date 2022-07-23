@@ -1,4 +1,10 @@
+import { ActivityComponent } from './../activity/activity.component';
 import { Component, OnInit } from '@angular/core';
+import { Bootcamp } from 'src/app/model/Bootcamp';
+import { Hackhaton } from 'src/app/model/Hackhaton';
+import { InHouseEducation } from 'src/app/model/InHouseEducation';
+import { Sponsor } from 'src/app/model/Sponsor';
+import { Department } from 'src/app/model/Department';
 
 @Component({
   selector: 'app-users',
@@ -7,38 +13,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsersComponent implements OnInit {
 
-    private name: string;
-    private surname: string;
-    private phoneNumber: string;
-    private email: string;  
-    private activity!: Activity;
+    name!: string;
+    surname!: string;
+    phoneNumber!: string;
+    email!: string;  
+    activity!: ActivityComponent;
 
     /* Person constructor */
-    constructor(name:string,surname:string,phoneNumber:string,email:string) {
-        this.name=name;
-        this.surname=surname;
-        this.phoneNumber=phoneNumber;
-        this.email=email;
+    constructor() {
     }
 
-    /*Create bootcamp */
-    addBootcamp(activityName:string,activityStartDate:Date,activityFinishDate:Date,activityStatus:string,sponsor:Sponsor):Activity{
+    /*Create bootcamp 
+    addBootcamp(activityName:string,activityStartDate:Date,activityFinishDate:Date,activityStatus:string,sponsor:Sponsor):ActivityComponent{
         this.activity= new Bootcamp(activityName,activityStartDate,activityFinishDate,activityStatus,sponsor);
         return this.activity;
     }
-    /*Create Hackhaton */
-    addHackhaton(activityName:string,activityStartDate:Date,activityFinishDate:Date,activityStatus:string,sponsor:Sponsor):Activity{
+    addHackhaton(activityName:string,activityStartDate:Date,activityFinishDate:Date,activityStatus:string,sponsor:Sponsor):ActivityComponent{
         this.activity= new Hackhaton(activityName,activityStartDate,activityFinishDate,activityStatus,sponsor);
         return this.activity;
-    }
-    /*Create InHouseEducation */   
-    addInHouseEducation(activityName:string,activityStartDate:Date,activityFinishDate:Date,activityStatus:string,companyName:string,department:Department):Activity{
+    }  
+    addInHouseEducation(activityName:string,activityStartDate:Date,activityFinishDate:Date,activityStatus:string,companyName:string,department:Department):ActivityComponent{
         this.activity= new InHouseEducation(activityName,activityStartDate,activityFinishDate,activityStatus,companyName,department);
 
         return this.activity;
     }
 
-    /*Find person in Person[] */
+    Find person in Person[] 
     find(name:string,surname:string,person:Person[])
     {
         for(var i=0;i<person.length;i++)
@@ -49,7 +49,7 @@ export class UsersComponent implements OnInit {
           }
         }
 
-    }
+    }*/
 
     get Name():string{
         return this.name;
