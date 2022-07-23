@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { ActivityComponent } from './../activity/activity.component';
+import { Activity } from 'src/app/model/Activity';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-listactivities',
@@ -6,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./listactivities.component.css']
 })
 export class ListactivitiesComponent implements OnInit {
-
+  
+  
   constructor() { }
 
+  
   ngOnInit(): void {
   }
 

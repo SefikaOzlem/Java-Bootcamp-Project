@@ -1,23 +1,36 @@
 <div>
+    <a href="app-listactivities"><button class="button">Akitiviteleri Gör</button></a>
     <form #frm="ngForm" (ngSubmit)="OnClickForm(frm.value)" class="smart-green">
-        <h1 center>ETKİNLİK OLUŞTUR</h1>
-        Etkinlik Adı : <input type="text" name="activityName" placeholder="" ngModel/>
-        <br><br> Etkinlik Tipi : <select #types (change)="onSelected(types.value)" ng-model required="required">
-            <option style="display:none" value=""></option>
+        <h1>ETKİNLİK OLUŞTUR</h1>
+        <label>Etkinlik Adı : </label>
+        <input type="text" name="activityName" placeholder="" ngModel/>
+        <br><br> 
+        <label>Etkinlik Tipi : </label>
+        <select #types (change)="onSelected(types.value)" ng-model required="required">
+            <option style="display:none" value="">Seçiniz</option>
             <option value="BootCamp">BootCamp</option>
             <option value="Hackaton">Hackaton</option>
             <option value="In House Education">In House Education</option>
         </select>
-        <br><br> Başlangıç Tarihi : <input type="date" name="activityStartDate" placeholder="" ngModel />
-        <br><br> Bitiş Tarihi : <input type="date" name="activityFinishDate" placeholder="" ngModel />
-        <br><br> Etkinlik Statusu :<select #status (change)="onSelectedStatus(status.value)" ng-model required="required">
-          <option style="display:none" value=""></option>
+        <br><br> 
+        <label>Başlangıç Tarihi : </label>
+        <input type="date" name="activityStartDate" placeholder="" ngModel />
+        <br><br> 
+        <label>Bitiş Tarihi : </label>
+        <input type="date" name="activityFinishDate" placeholder="" ngModel />
+        <br><br> 
+        <label>Etkinlik Statüsü :</label>
+        <select #status (change)="onSelectedStatus(status.value)" ng-model required="required">
+          <option style="display:none" value="">Seçiniz</option>
           <option value="Online">Online</option>
           <option value="In Office">In office</option>
         </select>
-        <br><br> Etkinlik Detayları : <textarea name="details" placeholder="" rows="7" ngModel></textarea>
+        <br><br> 
+        <label>Etkinlik Detayları : </label>
+        <textarea name="details" placeholder="" rows="7" ngModel></textarea>
         <br><br>
-        <button (click)="onSaveActivity()">Etkinlik Oluştur</button>
+        <button (click)="onSaveActivity()" class = "button">Etkinlik Oluştur</button>
+        
     </form>
-
+    
 </div>
