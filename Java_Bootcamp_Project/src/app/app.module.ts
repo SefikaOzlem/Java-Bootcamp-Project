@@ -9,6 +9,7 @@ import { UsersComponent } from './components/users/users.component';
 import { TeacherComponent } from './components/teacher/teacher.component';
 import { ActivityComponent } from './components/activity/activity.component';
 import { ListactivitiesComponent } from './components/listactivities/listactivities.component';
+import { StudentsComponent } from './components/students/students.component';
 
 	
 
@@ -21,6 +22,7 @@ import { ListactivitiesComponent } from './components/listactivities/listactivit
     UsersComponent,
     TeacherComponent,
     ListactivitiesComponent,
+    StudentsComponent,
    
   ],
   imports: [

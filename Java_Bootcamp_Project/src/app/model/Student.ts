@@ -2,8 +2,8 @@ import { Person } from "./Person";
 
 export class Student extends Person{
 
-    private studentNumber:string;
-    private univercity: string;
+   studentNumber:string;
+    univercity: string;
 
     constructor(name:string,surname:string,phoneNumber:string,email:string,studentNumber:string,univercity:string){
         super(name,surname,phoneNumber,email);

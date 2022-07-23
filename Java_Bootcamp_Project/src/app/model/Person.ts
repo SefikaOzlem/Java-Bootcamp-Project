@@ -8,11 +8,11 @@ import { InHouseEducation } from './InHouseEducation';
 import { Department } from './Department';
 
 export abstract class Person{
-    private name: string;
-    private surname: string;
-    private phoneNumber: string;
-    private email: string;  
-    private activity!: Activity;
+    name: string;
+    surname: string;
+    phoneNumber: string;
+    email: string;  
+    activity!: Activity;
 
     /* Person constructor */
     constructor(name:string,surname:string,phoneNumber:string,email:string) {
