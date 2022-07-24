@@ -22,6 +22,7 @@ https://reitdemir.medium.com/angularda-servis-olu%C5%9Fturma-14adf292a0b1
 # Technologies
 
 Angular - Angular 14.0.6
+
 Node.js - Node.js 16.15.1
 
 # Author
