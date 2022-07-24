@@ -17,7 +17,7 @@ export class ListactivitiesComponent implements OnInit {
   { 
     
     this.activitiesList=actService.getActivities();
-    console.log("aaaaa ",this.activitiesList);
+    console.log(" listactivities ",this.activitiesList);
   }
 
   ngOnInit(): void {

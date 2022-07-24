@@ -6,6 +6,7 @@ export abstract class Activity {
     activityStartDate:Date;
      activityFinishDate:Date;
      activityDetail!:string;
+     activityType!:string 
      students:Array<Student> = [];
      moderators:Array<Moderator> = [];
      isTheActive!:boolean;
@@ -98,7 +99,11 @@ export abstract class Activity {
         }
     }
 
-    abstract getActivityType():string;  // abstract method, return the activity type  
-
+     get ActivityType():string{
+        return this.activityType;
+     }
+     set ActivityType(value:string){
+        this.activityType=value;
+     }
 }
 

@@ -1,4 +1,4 @@
-<div *ngIf="!deger3">
+<div *ngIf="!flag">
     <button (click)="onTemp()" class="button">Akitiviteleri Gör</button>
     <form #frm="ngForm" (ngSubmit)="OnClickForm(frm.value)" class="smart-green">
         <h1>ETKİNLİK OLUŞTUR</h1>
@@ -35,13 +35,24 @@
 
 </div>
 
-<div *ngIf="deger3">
-    <h1>Student List</h1>
+<div *ngIf="flag">
 
+    <br> <label>Student Number : </label>
+    <input type="text" name="StudentNumber" placeholder="" ngModel/>
+    <button (click)="addStudent(number,activityType)" class="button">Add Student</button><br>
+    <br> <label>Moderator Name : </label><br>
+    <input type="text" name="ModeratorName" placeholder="" ngModel/>
+    <button (click)="setModerator($event)" class="button">Add Moderator</button>
+    <h1>Activities List</h1>
     <ul style="list-style: none;">
-        <li *ngFor="let student of etkinlik ">
+        <li *ngFor="let act of activits ">
             <br>
-            <mat-card>{{student.activityName+" "}}</mat-card>
+            <mat-card>
+                <p>{{"Activity Name: "+act.activityName}}</p>
+                <p>{{"Activity Type: "+act.activityType}} </p>
+                <p>{{"Activity Status: "+act.activityStatus}} </p>
+                <p>{{"Activity Start / Finish Date: "+act.activityStartDate+ " / "+act.activityFinishDate}} </p>
+            </mat-card>
 
         </li>
     </ul>

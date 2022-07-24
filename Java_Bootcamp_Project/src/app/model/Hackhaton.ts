@@ -28,8 +28,5 @@ export class Hackhaton extends Activity{
         this.sponsor=sponsorCompany;
     }
     
-    getActivityType(): string {
-        return 'Hackhaton';
-    }
-   
+    
 }

@@ -27,28 +27,49 @@ export class ActivityComponent implements OnInit {
     activityDetail!:string;
     activityStartDate!:Date;
     activityFinishDate!:Date;
-    deger3: boolean = false;
-    @Input() etkinlik:Array<Activity> = [];
-    @Output() countChange :Array<Activity> = [];
-
+    flag: boolean = false;  // variable held to control whether the see events button is pressed
+    number!:string;      // student number for add student
+    bootCampProject!:Bootcamp;
+    hackhatonProject!:Hackhaton;
+    inHouseEducationProject!:InHouseEducation;
+    students:Array<Student> = [];
+     moderators:Array<Moderator> = [];
+     tempStudent!:Student; // temp student object for add student
+    @Input() activits:Array<Activity> = [];
+    
     actsService!: ActsService;
 
     constructor(private formBuilder: FormBuilder,actSrc:ActsService) {
        this.actsService=actSrc;
         
     }
-    ngOnInit(): void {
+    ngOnInit(): void {  // students registered in the system 
+
+        const studentOne=new Student("Özlem","PUL","5079682541","ozlem@gmail.com","201751001","Dokuz Eylül Univercity");
+        this.students.push(studentOne);
+        const studentTwo=new Student("Ayşe Nur","Bilge","50521653","aysenur@gmail.com","201751002","İstanbul Gelişim Univercity");
+        this.students.push(studentTwo);
+        const studentThree=new Student("Selda","Güneş","5325874123","gunes@gmail.com","201751003","Ege Üniversitesi");
+        this.students.push(studentThree);
+        const studentFour=new Student("Yeliz","Bayrak","5078963214","bayrak@gmail.com","201851006","Yeditepe Univercity");
+        this.students.push(studentFour);
+        const studentFive=new Student("Mert","Bilge","5422329551","mertb@gmail.com","2018490054","Ankara Univercity");
+        this.students.push(studentFive);
+        const studentSix=new Student("Osman","Korkmez","5054239847","osman99@gmail.com","2018490254","Gazi Univercity");
+        this.students.push(studentSix);
               
     } 
-    onSelected(value:any){
+
+    onSelected(value:any){  // keeps the selected activity type
         this.activityType=value;
     }
-    onSelectedStatus(value:any){
+    onSelectedStatus(value:any){  // // keeps the selected activity status
         this.activityStatus=value;
     }
 
-   
-
+   //It displays the values ​​entered in the event creation form on the screen when you press the "create event" button.
+   //Object is created according to the selected activity type. The received information is used when creating the object. 
+   //This object is added to the list named "activities" by calling the function created in the service.
     OnClickForm(data: { activityName: string; type : string; activityStartDate: Date; activityFinishDate: Date; statu: string; details:string}) {
        this.activityName=data.activityName;
        this.activityStartDate=data.activityStartDate;
@@ -58,7 +79,6 @@ export class ActivityComponent implements OnInit {
         + data.activityStartDate + "\nBitiş Tarihi : "  + data.activityFinishDate + "\n Etkinlik Statusu : " 
         + this.activityStatus + "\n Etkinlik detayları : " + data.details );
 
-    
         let sponsor = new Sponsor("AKSİgorta "); //New sponsor identified 
         var teacherOne=new Teacher("Yunus","Doğan","5078982541","yunusd@gmail.com","Android");
         const department=new Department("Technology",teacherOne);
@@ -66,147 +86,55 @@ export class ActivityComponent implements OnInit {
 
         if(this.activityType=="BootCamp"){
           
-            const bootcampObject=new Bootcamp(this.activityName,this.activityStartDate,this.activityFinishDate,this.activityStatus,sponsor);//Object defined with bootcamp constructor
-          
-            this.actsService.addActivityBootcamp(bootcampObject);
+            this.bootCampProject=new Bootcamp(this.activityName,this.activityStartDate,this.activityFinishDate,this.activityStatus,sponsor);//Object defined with bootcamp constructor
+            this.bootCampProject.activityType="Bootcamp";
+            this.actsService.addActivityBootcamp( this.bootCampProject);
         
         }
         else if(this.activityType=="Hackhaton"){
-            const hackatonObject=new Hackhaton(this.activityName,this.activityStartDate,this.activityFinishDate,this.activityStatus,sponsor);
-            this.actsService.addActivityHackaton(hackatonObject);
+            this.hackhatonProject=new Hackhaton(this.activityName,this.activityStartDate,this.activityFinishDate,this.activityStatus,sponsor);
+            this.hackhatonProject.activityType="Hackhaton";
+            this.actsService.addActivityHackaton(this.hackhatonProject);
         }
         else if(this.activityType=="In House Education"){
-            const inHouseEducationObject=new InHouseEducation(this.activityName,this.activityStartDate,this.activityFinishDate,this.activityStatus,"AKBank",department);
-            this.actsService.addActivityInHouseEducation(inHouseEducationObject);
+            this.inHouseEducationProject=new InHouseEducation(this.activityName,this.activityStartDate,this.activityFinishDate,this.activityStatus,"AKBank",department);
+            this.inHouseEducationProject.activityType= "In House Education"
+            this.actsService.addActivityInHouseEducation(this.inHouseEducationProject);
         }  
-        this.etkinlik=this.actsService.getActivities();
-        
-        this.countChange=this.etkinlik;
-        console.log(this.actsService.getActivities());
+        this.activits=this.actsService.getActivities();   
     }
-    onTemp(){
-        this.deger3=true;
+
+    onTemp(){  // If the "Etkinlikleri Gör" button is pressed, the flag value is set to true.
+        this.flag=true;
+    }
+
+    //student number is searched among students.
+    //According to the student number found, that student is assigned to the tempStudent object.
+    //According to the type of activity taken, it is added to the student list of that activity.
+    addStudent(studentNumber:string, type: string){  // 
+    console.log(studentNumber);
+      for(let i=0;i<this.students.length;i++){
+            if(this.students[i].studentNumber==studentNumber){
+                this.tempStudent=this.students[i];
+            }
+      }
+      if(type=="BootCamp"){
+            this.bootCampProject.addStudents(this.tempStudent);
+       }
+       else if(type=="Hackhaton"){
+        this.hackhatonProject.addStudents(this.tempStudent);
+      }
+      else if(type=="In House Education"){
+        this.inHouseEducationProject.addStudents(this.tempStudent);
+      }
+      console.log(this.students);
+    }
+    setModerator($event:Event){
+
     }
     onSaveActivity(){
-        
-       /* console.log("lkjhgfdfghjklkjhg");
-        let sponsor = new Sponsor("AKSİgorta "); //New sponsor identified 
-        var teacherOne=new Teacher("Yunus","Doğan","5078982541","yunusd@gmail.com","Android");
-        const department=new Department("Technology",teacherOne);
-        console.log(this.activityType);
-        if(this.activityType=="BootCamp"){
-            console.log("aaaa");
-            const bootcampObject=new Bootcamp(this.activityName,this.activityStartDate,this.activityFinishDate,this.activityStatus,sponsor);//Object defined with bootcamp constructor
-            console.log("bbbbbb ", this.activityName);
-            this.actsService.addActivityBootcamp(bootcampObject);
-            console.log("ccccc");
-            console.log(this.actsService.activities);
-            console.log("ddddddddd");
-        }
-        else if(this.activityType=="Hackhaton"){
-            const hackatonObject=new Hackhaton(this.activityName,this.activityStartDate,this.activityFinishDate,this.activityStatus,sponsor);
-            this.actsService.addActivityHackaton(hackatonObject);
-        }
-        else if(this.activityType=="In House Education"){
-            const inHouseEducationObject=new InHouseEducation(this.activityName,this.activityStartDate,this.activityFinishDate,this.activityStatus,"AKBank",department);
-            this.actsService.addActivityInHouseEducation(inHouseEducationObject);
-        }  
-        this.etkinlik=this.actsService.getActivities();
-        
-        console.log(this.etkinlik[0].activityName);*/
-       
+       console.log(this.actsService.getActivities());
     }
-
-
-     /*activityName!: string;
-    activityStartDate!: Date;
-    activityFinishDate!: Date;
-    activityDetail!:string;
-    students:Array<Student> = [];
-    moderators:Array<Moderator> = [];
-    isTheActive!:boolean;
-    activityStatus!: string; 
-
-    constructor() {   // Activity constructor
-    }
-
-    /*get ActivityName():string{   // return activity name 
-    return this.activityName;
-    }
-    set ActivityName(activityName:string){   // setting to activity name
-        this.activityName=activityName;
-    }
-    get ActivityStartDate():Date{                  
-        return this.activityStartDate;
-    }
-    set ActivityStartDate(activityStartDate:Date){
-        this.activityStartDate=activityStartDate;
-    }
-    get ActivityFinishDate():Date{                  
-        return this.activityFinishDate;
-    }
-    set ActivityFinishDate(activityFinishDate:Date){
-        this.activityFinishDate=activityFinishDate;
-    }
-    get ActivityStatus():string{
-        return this.activityStatus;
-    }
-    set ActivityStatus(activityStatus:string){
-        this.activityStatus=activityStatus;
-    }
-    get ActivityDetail():string{
-        return this.activityDetail;
-    }
-    set ActivityDetail(activityDetail:string){
-        this.activityDetail=activityDetail;
-    }
-    get Students():Student[]{
-        return this.students;
-    }
-    addStudents(student:Student)  // add students to activities 
-    {
-    this.students.push(student);
-    }
-    get Moderators():Moderator[]{
-        return this.moderators;
-    }
-    addModerators(moderator:Moderator)  // add moderators to activities
-    {
-    this.moderators.push(moderator);
-    }
-
-    get IsTheActive():boolean{
-        return this.isTheActive;
-    }
-    set IsTheActive(isTheActive:boolean){
-        this.isTheActive=isTheActive;
-    }
-
-    displayAllActivities(activity:ActivityComponent[]){      // print the all activities, its something information
-        for (var i = 0; i < activity.length; i++) {
-            if(activity[i]!=undefined){
-                console.log(activity[i].ActivityName +" - "+activity[i].ActivityStatus + " - "+activity[i].ActivityStartDate.toLocaleDateString()
-                +" - "+activity[i].ActivityFinishDate.toLocaleDateString()); 
-            }
-        }
-    }
-
-    deleteActivity(removeActivityName:string,activities:ActivityComponent[]){   // delete activity using acitivity name
-        
-        for (var i = 0; i < activities.length; i++) {
-            if(activities[i].ActivityName==removeActivityName){
-            delete activities[i]; 
-            
-            }
-        }
-    }
-    /*
-    find(activityName:string,activities:Activity[]){      // search activity using activity name
-        for(var i=0;i<activities.length;i++){
-            if(activities[i].activityName==activityName){
-                console.log(activities[i]);
-            }
-        }
-    }
-    */
 }
+
+

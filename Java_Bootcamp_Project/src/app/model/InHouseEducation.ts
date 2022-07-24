@@ -30,9 +30,7 @@ export class InHouseEducation extends Activity{
         this.department=department;
     } 
 
-    getActivityType(): string {
-        return 'InHouseEducation';
-    }
+   
 
     
 }

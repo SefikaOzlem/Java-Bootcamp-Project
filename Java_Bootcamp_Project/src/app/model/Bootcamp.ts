@@ -30,9 +30,7 @@ export class Bootcamp extends Activity{
      this.sponsor=sponsorCompany;
     }
     
-     getActivityType(): string {
-        return 'Bootcamp';
-     }
+   
 
     
 }
