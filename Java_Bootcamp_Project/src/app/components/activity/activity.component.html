@@ -1,5 +1,5 @@
-<div>
-    <a href="app-listactivities"><button class="button">Akitiviteleri Gör</button></a>
+<div *ngIf="!deger3">
+    <button (click)="onTemp()" class="button">Akitiviteleri Gör</button>
     <form #frm="ngForm" (ngSubmit)="OnClickForm(frm.value)" class="smart-green">
         <h1>ETKİNLİK OLUŞTUR</h1>
         <label>Etkinlik Adı : </label>
@@ -33,4 +33,16 @@
 
     </form>
 
+</div>
+
+<div *ngIf="deger3">
+    <h1>Student List</h1>
+
+    <ul style="list-style: none;">
+        <li *ngFor="let student of etkinlik ">
+            <br>
+            <mat-card>{{student.activityName+" "}}</mat-card>
+
+        </li>
+    </ul>
 </div>

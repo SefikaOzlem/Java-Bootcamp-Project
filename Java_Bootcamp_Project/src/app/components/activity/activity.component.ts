@@ -11,6 +11,8 @@ import { Student } from 'src/app/model/Student';
 import { Activity } from 'src/app/model/Activity';
 import { Department } from 'src/app/model/Department';
 import { Teacher } from 'src/app/model/Teacher';
+import { Output } from '@angular/core';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-activity',
@@ -25,7 +27,10 @@ export class ActivityComponent implements OnInit {
     activityDetail!:string;
     activityStartDate!:Date;
     activityFinishDate!:Date;
-    etkinlik:Array<Activity> = [];
+    deger3: boolean = false;
+    @Input() etkinlik:Array<Activity> = [];
+    @Output() countChange :Array<Activity> = [];
+
     actsService!: ActsService;
 
     constructor(private formBuilder: FormBuilder,actSrc:ActsService) {
@@ -58,6 +63,7 @@ export class ActivityComponent implements OnInit {
         var teacherOne=new Teacher("Yunus","Doğan","5078982541","yunusd@gmail.com","Android");
         const department=new Department("Technology",teacherOne);
         console.log(this.activityType);
+
         if(this.activityType=="BootCamp"){
           
             const bootcampObject=new Bootcamp(this.activityName,this.activityStartDate,this.activityFinishDate,this.activityStatus,sponsor);//Object defined with bootcamp constructor
@@ -75,7 +81,11 @@ export class ActivityComponent implements OnInit {
         }  
         this.etkinlik=this.actsService.getActivities();
         
-        console.log(this.etkinlik);
+        this.countChange=this.etkinlik;
+        console.log(this.actsService.getActivities());
+    }
+    onTemp(){
+        this.deger3=true;
     }
     onSaveActivity(){
         

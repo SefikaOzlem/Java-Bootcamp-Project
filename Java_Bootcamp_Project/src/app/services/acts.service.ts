@@ -1,17 +1,19 @@
+import { ActivityComponent } from './../components/activity/activity.component';
 import { InHouseEducation } from './../model/InHouseEducation';
 import { Hackhaton } from './../model/Hackhaton';
 import { Bootcamp } from './../model/Bootcamp';
 import { Activity } from 'src/app/model/Activity';
 import { Injectable } from '@angular/core';
-import { ActivityComponent } from '../components/activity/activity.component';
+
 @Injectable({
   providedIn: 'root'
 })
 export class ActsService {
 
-  activities:Array<Activity> = [];
+  activities: Array<Activity>=[];
   
   addActivityBootcamp(bootcamp:Bootcamp){
+  
     this.activities.push(bootcamp);
     console.log("Boooooootcamp")
   }
@@ -22,8 +24,12 @@ export class ActsService {
     this.activities.push(inHouseEducation);
   }
   getActivities(){
+    console.log(ActivityComponent.prototype.etkinlik);
     let arr=[];
-    arr=this.activities;
+    console.log(this.activities.length);
+    for(let i=0;i<this.activities.length;i++){
+      arr.push(this.activities[i]);
+    }
     return arr;
   }
   constructor() { }

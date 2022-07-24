@@ -1,6 +1,9 @@
-<p>listactivities work</p>
-<ul>
-    <li *ngFor="let act Of activities">
-        {{act}
+<h1>Student List</h1>
+
+<ul style="list-style: none;">
+    <li *ngFor="let student of activitiesList ">
+        <br>
+        <mat-card>{{student.activityName+" "}}</mat-card>
+
     </li>
 </ul>
