@@ -1,3 +1,4 @@
+import { ActsService } from './../../services/acts.service';
 import { InHouseEducation } from 'src/app/model/InHouseEducation';
 import { Hackhaton } from 'src/app/model/Hackhaton';
 import { Sponsor } from 'src/app/model/Sponsor';
@@ -24,9 +25,13 @@ export class ActivityComponent implements OnInit {
     activityDetail!:string;
     activityStartDate!:Date;
     activityFinishDate!:Date;
-    activities:Array<Activity> = [];
+    etkinlik:Array<Activity> = [];
+    actsService!: ActsService;
 
-    constructor(private formBuilder: FormBuilder) {}
+    constructor(private formBuilder: FormBuilder,actSrc:ActsService) {
+       this.actsService=actSrc;
+        
+    }
     ngOnInit(): void {
               
     } 
@@ -37,13 +42,7 @@ export class ActivityComponent implements OnInit {
         this.activityStatus=value;
     }
 
-    get Activities():Activity[]{
-        return this.activities;
-    }
-
-   /* getActivityType():string{
-        return "";
-    }  // abstract method, return the activity type  */
+   
 
     OnClickForm(data: { activityName: string; type : string; activityStartDate: Date; activityFinishDate: Date; statu: string; details:string}) {
        this.activityName=data.activityName;
@@ -53,23 +52,59 @@ export class ActivityComponent implements OnInit {
         alert("Etkinlik adı : " + data.activityName +"\nEtkinlik türü : " +this.activityType + "\nBaşlangıç Tarihi : " 
         + data.activityStartDate + "\nBitiş Tarihi : "  + data.activityFinishDate + "\n Etkinlik Statusu : " 
         + this.activityStatus + "\n Etkinlik detayları : " + data.details );
-    }
-    onSaveActivity(){
+
+    
         let sponsor = new Sponsor("AKSİgorta "); //New sponsor identified 
         var teacherOne=new Teacher("Yunus","Doğan","5078982541","yunusd@gmail.com","Android");
         const department=new Department("Technology",teacherOne);
-        if(this.activityType=="Bootcamp"){
+        console.log(this.activityType);
+        if(this.activityType=="BootCamp"){
+          
             const bootcampObject=new Bootcamp(this.activityName,this.activityStartDate,this.activityFinishDate,this.activityStatus,sponsor);//Object defined with bootcamp constructor
-            this.activities.push(bootcampObject);
+          
+            this.actsService.addActivityBootcamp(bootcampObject);
+        
         }
-        else if(this.activityType=="Hackaton"){
-            const hackhatonObject=new Hackhaton(this.activityName,this.activityStartDate,this.activityFinishDate,this.activityStatus,sponsor);
-            this.activities.push(hackhatonObject);
+        else if(this.activityType=="Hackhaton"){
+            const hackatonObject=new Hackhaton(this.activityName,this.activityStartDate,this.activityFinishDate,this.activityStatus,sponsor);
+            this.actsService.addActivityHackaton(hackatonObject);
         }
         else if(this.activityType=="In House Education"){
             const inHouseEducationObject=new InHouseEducation(this.activityName,this.activityStartDate,this.activityFinishDate,this.activityStatus,"AKBank",department);
-            this.activities.push(inHouseEducationObject);
+            this.actsService.addActivityInHouseEducation(inHouseEducationObject);
         }  
+        this.etkinlik=this.actsService.getActivities();
+        
+        console.log(this.etkinlik);
+    }
+    onSaveActivity(){
+        
+       /* console.log("lkjhgfdfghjklkjhg");
+        let sponsor = new Sponsor("AKSİgorta "); //New sponsor identified 
+        var teacherOne=new Teacher("Yunus","Doğan","5078982541","yunusd@gmail.com","Android");
+        const department=new Department("Technology",teacherOne);
+        console.log(this.activityType);
+        if(this.activityType=="BootCamp"){
+            console.log("aaaa");
+            const bootcampObject=new Bootcamp(this.activityName,this.activityStartDate,this.activityFinishDate,this.activityStatus,sponsor);//Object defined with bootcamp constructor
+            console.log("bbbbbb ", this.activityName);
+            this.actsService.addActivityBootcamp(bootcampObject);
+            console.log("ccccc");
+            console.log(this.actsService.activities);
+            console.log("ddddddddd");
+        }
+        else if(this.activityType=="Hackhaton"){
+            const hackatonObject=new Hackhaton(this.activityName,this.activityStartDate,this.activityFinishDate,this.activityStatus,sponsor);
+            this.actsService.addActivityHackaton(hackatonObject);
+        }
+        else if(this.activityType=="In House Education"){
+            const inHouseEducationObject=new InHouseEducation(this.activityName,this.activityStartDate,this.activityFinishDate,this.activityStatus,"AKBank",department);
+            this.actsService.addActivityInHouseEducation(inHouseEducationObject);
+        }  
+        this.etkinlik=this.actsService.getActivities();
+        
+        console.log(this.etkinlik[0].activityName);*/
+       
     }
 
 
