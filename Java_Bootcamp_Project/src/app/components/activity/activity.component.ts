@@ -35,7 +35,7 @@ export class ActivityComponent implements OnInit {
     students:Array<Student> = [];
      moderators:Array<Moderator> = [];
      tempStudent!:Student; // temp student object for add student
-    @Input() activits:Array<Activity> = [];
+    activits:Array<Activity> = [];
     
     actsService!: ActsService;
 
@@ -106,6 +106,9 @@ export class ActivityComponent implements OnInit {
 
     onTemp(){  // If the "Etkinlikleri Gör" button is pressed, the flag value is set to true.
         this.flag=true;
+    }
+    offTemp(){  // If the "Etkinlikleri Gör" button is pressed, the flag value is set to true.
+        this.flag=false;
     }
 
     //student number is searched among students.

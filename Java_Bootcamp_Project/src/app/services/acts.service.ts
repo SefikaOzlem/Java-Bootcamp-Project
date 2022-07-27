@@ -3,7 +3,7 @@ import { InHouseEducation } from './../model/InHouseEducation';
 import { Hackhaton } from './../model/Hackhaton';
 import { Bootcamp } from './../model/Bootcamp';
 import { Activity } from 'src/app/model/Activity';
-import { Injectable } from '@angular/core';
+import { Injectable, Input } from '@angular/core';
 
 
 @Injectable({
@@ -11,7 +11,7 @@ import { Injectable } from '@angular/core';
 })
 export class ActsService {
 
-  activities: Array<Activity>=[];
+  @Input() activities: Array<Activity>=[];
 
   
   addActivityBootcamp(bootcamp:Bootcamp){   // The created activity bootcamp is added to the list as bootcamp.
